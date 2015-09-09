@@ -1,0 +1,30 @@
+<?php
+
+// I wanted to be able to use a taxonomy list as a pre-built option list in webforms
+// Found this code online. Adapted to my situation: 'sections' is the name of the taxonomy needed.
+// SECTIONS_VOC_ID is a constant you need to define, '3' stands for the third taxonomy in the list (check database for number = vid !)
+define('SECTIONS_VOC_ID', 3);
+
+// use the provided webform_select_options_info hook.
+function wf_optionlist_webform_select_options_info() {
+  $items = array();
+  // Basically says to add Sections to the "Load a pre-built option list" list.
+  $items['sections'] = array(
+    'title' => t('Sections'),
+    'options callback' => 'wf_optionlist_options_sections',
+  );
+  return $items;
+}
+
+
+function wf_optionlist_options_sections() {
+  $sections = array();
+  // Simple query to the tax table.
+  $q = "SELECT tid, name FROM {taxonomy_term_data} WHERE vid = :vid ORDER BY name";
+  $rs = db_query($q, array(":vid" => SECTIONS_VOC_ID));
+  // Create key|value pairs.
+  foreach ($rs as $r) {
+    $sections[$r->tid] = t($r->name);
+  }
+  return $sections;
+}

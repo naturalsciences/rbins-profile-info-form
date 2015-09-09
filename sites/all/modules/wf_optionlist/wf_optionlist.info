@@ -1,0 +1,5 @@
+name = "WebForm Extention: Optionlist"
+description = "Module that'll enable you to use taxonomy terms as a prebuild optionlist in Webforms"
+package = My Custom Modules
+core = 7.x
+version = 7.x-1.0

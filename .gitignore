@@ -1,0 +1,29 @@
+# Ignore configuration files that may contain sensitive information.
+sites/*/settings*.php
+
+# Ignore paths that contain user-generated content.
+sites/*/files
+sites/*/private
+
+#Exclude everything's out /sites/default subdir
+sites/default/tmp
+
+#Exclude crap coming from MacOSX
+*.DS_Store
+
+#Exclude temporary files created while editing
+*~
+*.bak
+*.kdev4
+*.sublime-workspace
+
+#Exclude all txt files except README.txt
+CHANGELOG.txt
+COPYRIGHT.txt
+INSTALL*.txt
+LICENSE.txt
+MAINTAINERS.txt
+UPGRADE.txt
+
+#Exclude specific Acquia links
+sites/*.dd
