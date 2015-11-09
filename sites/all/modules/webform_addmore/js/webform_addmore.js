@@ -5,6 +5,9 @@
 Drupal.behaviors.webform_addmore = {
   attach: function(context) {
     function fieldsetRepeater(container, fieldsetSelecter, addBtnTxt, delBtnTxt, numberFirstShown) {
+      if ($(fieldsetSelecter).parent().find('input.add-more').length) {
+        return;
+      }
       var collections = Drupal.settings.webform_addmore.collections;
 
       if (collections.length == 0) {
